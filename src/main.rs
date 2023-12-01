@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             .map_err(|_| "No input for given day found.")?;
         let (star_1, star_2, t) = solutions::solve(day, &input);
         println!(
-            "Day {}:\n Part 1: {}\n Part 2: {}\n Time: {:?}\n",
+            "Day {}:\n Part 1: {}\n Part 2: {}\n Time  : {:?}\n",
             day, star_1, star_2, t
         );
     }

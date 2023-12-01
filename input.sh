@@ -17,4 +17,4 @@ if [[ -z "${AOC_SESSION-""}" ]]; then
   exit 1
 fi
 
-curl -k "https://adventofcode.com/2022/day/$1/input" --cookie "session=$AOC_SESSION" > ./inputs/$1.in
+curl -k "https://adventofcode.com/2023/day/$1/input" --cookie "session=$AOC_SESSION" > ./inputs/$1.in
