@@ -55,9 +55,7 @@ pub fn solve(input: &str) -> (String, String, Duration) {
     p1 += f as u32 * acc;
     let p2 = map
         .values()
-        .filter_map(|p| {
-            (p.len() == 2).then_some(p.iter().copied().product::<u32>())
-        })
+        .filter_map(|p| (p.len() == 2).then_some(p.iter().copied().product::<u32>()))
         .sum::<u32>();
     (p1.to_string(), p2.to_string(), t.elapsed())
 }
