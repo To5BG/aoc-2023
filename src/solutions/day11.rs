@@ -34,7 +34,7 @@ pub fn s(mut galaxies: Vec<(usize, usize)>, rows: &[bool], cols: &[bool], e: usi
     for l in 0..galaxies.len() {
         for r in (l + 1)..galaxies.len() {
             let (lg, rg) = (galaxies[l], galaxies[r]);
-            p += usize::abs_diff(lg.0, rg.0) + usize::abs_diff(lg.1, rg.1);
+            p += lg.0.abs_diff(rg.0) + lg.1.abs_diff(rg.1);
         }
     }
     p.to_string()
