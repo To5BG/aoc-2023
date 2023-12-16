@@ -1,7 +1,4 @@
-use std::{
-    collections::HashSet,
-    time::{Duration, Instant},
-};
+use std::time::{Duration, Instant};
 
 pub fn solve(input: &str) -> (String, String, Duration) {
     let t = Instant::now();
@@ -31,18 +28,23 @@ pub fn solve(input: &str) -> (String, String, Duration) {
 }
 
 fn simulate(map: &Vec<Vec<char>>, st: (i32, i32, i32, i32), dim: (i32, i32)) -> usize {
-    let (mut seen, mut prev) = (vec![vec![false; map[0].len()]; map.len()], HashSet::new());
+    let mut seen = vec![vec![[false; 4]; map[0].len()]; map.len()];
     let mut beams = Vec::from([st]);
     while !beams.is_empty() {
         let (mut bi, mut to_add) = (0, Vec::new());
         while bi < beams.len() {
             let curr = &mut beams[bi];
-            let k = dim.1.pow(3) * curr.3 + dim.1.pow(2) * curr.2 + dim.1 * curr.1 + curr.0;
-            if curr.0 < 0 || curr.0 >= dim.0 || curr.1 < 0 || curr.1 >= dim.1 || !prev.insert(k) {
+            if curr.0 < 0 || curr.0 >= dim.0 || curr.1 < 0 || curr.1 >= dim.1 {
                 beams.remove(bi);
                 continue;
             }
-            seen[curr.0 as usize][curr.1 as usize] = true;
+            let e = &mut seen[curr.0 as usize][curr.1 as usize]
+                [((curr.2 * 2 + curr.3) as f32 * 0.75 + 2.0) as usize];
+            if *e {
+                beams.remove(bi);
+                continue;
+            }
+            *e = true;
             match map[curr.0 as usize][curr.1 as usize] {
                 '.' => (curr.0, curr.1) = (curr.0 + curr.2, curr.1 + curr.3),
                 '-' if curr.2 == 0 => (curr.0, curr.1) = (curr.0 + curr.2, curr.1 + curr.3),
@@ -64,6 +66,6 @@ fn simulate(map: &Vec<Vec<char>>, st: (i32, i32, i32, i32), dim: (i32, i32)) -> 
         beams.extend(to_add);
     }
     seen.into_iter()
-        .map(|l| l.into_iter().filter(|s| *s).count())
+        .map(|l| l.into_iter().filter(|s| s.iter().any(|ss| *ss)).count())
         .sum::<usize>()
 }
