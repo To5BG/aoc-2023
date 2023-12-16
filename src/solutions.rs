@@ -14,6 +14,7 @@ mod day11;
 mod day12;
 mod day13;
 mod day14;
+mod day15;
 
 pub fn solve(day: &str, input: &str) -> (String, String, Duration) {
     match day {
@@ -31,6 +32,7 @@ pub fn solve(day: &str, input: &str) -> (String, String, Duration) {
         "12" => day12::solve(input),
         "13" => day13::solve(input),
         "14" => day14::solve(input),
+        "15" => day15::solve(input),
         _ => panic!("No such day solution implemented."),
     }
 }
