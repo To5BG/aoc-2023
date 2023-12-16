@@ -1,6 +1,13 @@
 use std::time::Duration;
 
 mod day1;
+mod day10;
+mod day11;
+mod day12;
+mod day13;
+mod day14;
+mod day15;
+mod day16;
 mod day2;
 mod day3;
 mod day4;
@@ -9,12 +16,10 @@ mod day6;
 mod day7;
 mod day8;
 mod day9;
-mod day10;
-mod day11;
-mod day12;
-mod day13;
-mod day14;
-mod day15;
+
+// Damn, I gotta use proc macros...
+// too lazy to set it up now tho,
+// will probably do that 2 days before the end of AOC lmao
 
 pub fn solve(day: &str, input: &str) -> (String, String, Duration) {
     match day {
@@ -33,6 +38,7 @@ pub fn solve(day: &str, input: &str) -> (String, String, Duration) {
         "13" => day13::solve(input),
         "14" => day14::solve(input),
         "15" => day15::solve(input),
+        "16" => day16::solve(input),
         _ => panic!("No such day solution implemented."),
     }
 }
