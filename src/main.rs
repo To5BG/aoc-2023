@@ -26,7 +26,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     .to_str()
                     .map(|s| s[3..].to_string())
             })
-            .sorted()
+            .sorted_by(|a, b| Ord::cmp(&a.parse::<u8>().unwrap(), &b.parse::<u8>().unwrap()))
             .collect::<Vec<String>>()
     } else {
         Vec::from([args.day.to_string()])
