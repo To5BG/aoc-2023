@@ -1,5 +1,7 @@
 use std::time::{Duration, Instant};
 
+const DIRMAP: &[usize] = &[0, 1, 0, 3, 2];
+
 pub fn solve(input: &str) -> (String, String, Duration) {
     let t = Instant::now();
     let map = input
@@ -39,7 +41,7 @@ fn simulate(map: &Vec<Vec<char>>, st: (i32, i32, i32, i32), dim: (i32, i32)) -> 
                 continue;
             }
             let e = &mut seen[curr.0 as usize][curr.1 as usize]
-                [((curr.2 * 2 + curr.3) as f32 * 0.75 + 2.0) as usize];
+                [DIRMAP[((curr.2 + 1) * 2 + curr.3) as usize]];
             if *e {
                 beams.remove(bi);
                 continue;
